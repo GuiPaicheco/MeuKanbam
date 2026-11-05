@@ -111,6 +111,18 @@ export const api = {
     );
   },
   async updatePassword(password) {
+    const tokenHash = new URLSearchParams(location.hash.slice(1)).get(
+      "activate",
+    );
+    if (tokenHash) {
+      check(
+        await requireClient().auth.verifyOtp({
+          token_hash: tokenHash,
+          type: "recovery",
+        }),
+      );
+      history.replaceState(null, "", location.pathname + "#type=recovery");
+    }
     check(await requireClient().auth.updateUser({ password }));
   },
   async getTasks() {
