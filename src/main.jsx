@@ -1521,8 +1521,8 @@ function Login({ onLogin, externalError, recoveryMode, onRecovered }) {
                 type="password"
                 autoComplete={recovery ? "new-password" : "current-password"}
                 required
-                minLength={recovery ? 12 : 1}
-                placeholder={recovery ? "No mínimo 12 caracteres" : "Sua senha"}
+                minLength={recovery ? 6 : 1}
+                placeholder={recovery ? "No mínimo 6 caracteres" : "Sua senha"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
