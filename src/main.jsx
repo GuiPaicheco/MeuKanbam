@@ -165,8 +165,7 @@ function App() {
   const [session, setSession] = useState(null),
     [authLoading, setAuthLoading] = useState(true),
     [recoveryMode, setRecoveryMode] = useState(
-      location.hash.includes("type=recovery") ||
-        location.hash.startsWith("#activate="),
+      location.hash.includes("type=recovery"),
     ),
     [tasks, setTasks] = useState([]),
     [events, setEvents] = useState([]),
@@ -1368,9 +1367,7 @@ function Login({ onLogin, externalError, recoveryMode, onRecovered }) {
     [error, setError] = useState(""),
     [message, setMessage] = useState(""),
     [recovery, setRecovery] = useState(
-      recoveryMode ||
-        location.hash.includes("type=recovery") ||
-        location.hash.startsWith("#activate="),
+      recoveryMode || location.hash.includes("type=recovery"),
     );
   useEffect(() => {
     if (recoveryMode) setRecovery(true);

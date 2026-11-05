@@ -25,7 +25,7 @@ Configure `VITE_SUPABASE_URL` e `VITE_SUPABASE_PUBLISHABLE_KEY` com o URL e a ch
 2. Desabilite novos cadastros e login anônimo nas configurações de Auth. Defina Site URL como `https://meukanbam.vercel.app` e apenas esse redirecionamento para recuperação de senha.
 3. Crie os dois usuários pelo painel Auth (sem senhas compartilhadas). Cadastre seus UUIDs em `public.kanbam_members` pelo SQL Editor. Somente administradores do banco podem alterar essa lista. Não use e-mails ou user_metadata como autorização.
 4. Verifique `database/security-tests.sql` no SQL Editor. Os testes usam transação revertida e não mantêm dados de teste.
-5. Configure as mesmas variáveis no Vercel e publique. Forneça links individuais de primeiro acesso para que cada pessoa defina sua senha. O token fica no fragmento da URL e só é validado ao enviar o formulário. Configure SMTP para habilitar a recuperação por e-mail e a entrega confiável de mensagens de autenticação.
+5. Configure as mesmas variáveis no Vercel e publique. Convide os usuários somente após testar o fluxo de recuperação e login. Configure SMTP para entrega confiável de e-mails de autenticação.
 
 A remoção de um membro bloqueia novas consultas e alterações mesmo com um JWT ainda válido. A sessão é armazenada apenas na aba e encerrada após inatividade. O banco registra alterações e impede sobrescrita silenciosa quando outra pessoa editou a mesma tarefa.
 
