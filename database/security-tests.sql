@@ -18,7 +18,7 @@ begin
  execute statement into n;
  if n <> 0 then raise exception 'SECURITY FAILURE: expected zero, got %: %',n,statement; end if;
 end $$;
-grant usage on schema pg_temp to anon,authenticated;
+do $$ begin execute format('grant usage on schema %I to anon,authenticated',(select nspname from pg_namespace where oid=pg_my_temp_schema())); end $$;
 grant execute on function pg_temp.assert_denied(text),pg_temp.assert_zero(text) to anon,authenticated;
 -- Minimal disposable Auth records. No passwords or credentials are generated.
 insert into auth.users(id,aud,role,email) values
